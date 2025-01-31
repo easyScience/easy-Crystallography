@@ -24,8 +24,8 @@ from typing import Union
 import numpy as np
 from easyscience import ureg
 from easyscience.Constraints import ObjConstraint
-from easyscience.Objects.new_variable import Parameter
 from easyscience.Objects.ObjectClasses import BaseObj
+from easyscience.Objects.variable import Parameter
 from easyscience.Utils.decorators import memoized
 
 from .SpaceGroup import SpaceGroup
@@ -43,7 +43,7 @@ CELL_DETAILS = {
         'value': 3,
         'unit': 'angstrom',
         'min': 0,
-        'max': np.Inf,
+        'max': np.inf,
         'fixed': True,
     },
     'angle': {
@@ -52,7 +52,7 @@ CELL_DETAILS = {
         'value': 90,
         'unit': 'deg',
         'min': 0,
-        'max': np.Inf,
+        'max': np.inf,
         'fixed': True,
     },
 }

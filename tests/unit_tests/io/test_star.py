@@ -7,8 +7,8 @@ import pytest
 from easyscience import global_object
 from easyscience.models.polynomial import Line
 from easyscience.Objects.Groups import BaseCollection
-from easyscience.Objects.Variable import Descriptor
-from easyscience.Objects.new_variable import Parameter
+from easyscience.Objects.variable import DescriptorStr
+from easyscience.Objects.variable import Parameter
 from easycrystallography.Components.Site import Atoms, Site, _SITE_DETAILS
 from easycrystallography.io.star_base import ItemHolder
 from easycrystallography.io.star_base import StarLoop
@@ -70,7 +70,7 @@ def test_ItemHolder_fixed(fixed, value, precision, expected):
     assert str(s) == expected
 
 
-@pytest.mark.parametrize("cls", [Descriptor])
+@pytest.mark.parametrize("cls", [DescriptorStr])
 def test_ItemHolder_str(cls):
     v = cls("v", "fooooooooo")
     s = ItemHolder(v)
@@ -80,7 +80,7 @@ def test_ItemHolder_str(cls):
 def test_StarSection():
     l = Line(2, 3)
     s = StarSection(l)
-    expected = "_m   2.0+/-0()\n_c   3.0+/-0()\n"
+    expected = "_m   2.00000000()\n_c   3.00000000()\n"
     assert str(s) == expected
 
 
@@ -93,7 +93,7 @@ def test_StarLoop():
     s = StarLoop(ps)
 
     expected = (
-        "loop_\n _m\n _c\n  2.0+/-0()  3.0+/-0()\n  4.0+/-0()  5.0+/-0()"
+        "loop_\n _m\n _c\n  2.00000000()  3.00000000()\n  4.00000000()  5.00000000()"
     )
 
     assert str(s) == expected

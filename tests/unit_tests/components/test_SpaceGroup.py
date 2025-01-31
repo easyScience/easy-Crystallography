@@ -6,13 +6,12 @@ import pytest
 import itertools
 import numpy as np
 
-# from easyscience.Objects.ObjectClasses import Parameter
-from easyscience.Objects.new_variable import Parameter
-from easyscience.Objects.new_variable import DescriptorStr as Descriptor
-# from easyscience.Objects.ObjectClasses import Descriptor as old_Descriptor
+from easyscience.Objects.variable import Parameter
+from easyscience.Objects.variable import DescriptorStr as DescriptorStr
 from easyscience import global_object
 from easycrystallography.Components.SpaceGroup import SpaceGroup, SG_DETAILS as _SG_DETAILS
 from easycrystallography.Symmetry.groups import SpaceGroup as SG
+from easyscience.Objects.variable import DescriptorAnyType
 
 SG_DETAILS = _SG_DETAILS.copy()
 del SG_DETAILS['symmetry_ops']
@@ -55,7 +54,7 @@ SYM = [value for value in SG.SYMM_OPS
 def test_SpaceGroup_fromDescriptor():
     sg_items = ['space_group_HM_name', 'P 1']
 
-    d = Descriptor(*sg_items)
+    d = DescriptorStr(*sg_items)
     sg = SpaceGroup(d)
     assert sg.space_group_HM_name.value == 'P 1'
 
@@ -78,7 +77,7 @@ def test_SpaceGroup_default():
                 g_item = 'value'
             assert getattr(f, g_item) == SG_DETAILS[selector][item]
 
-    assert isinstance(sg.space_group_HM_name, Descriptor)
+    assert isinstance(sg.space_group_HM_name, DescriptorStr)
 
 
 @pytest.mark.parametrize('sg_in', [sg['hermann_mauguin_fmt'] for sg in SYM])
